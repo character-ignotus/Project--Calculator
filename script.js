@@ -71,10 +71,56 @@ two.addEventListener('click', () => {
 });
 
 
+plus.addEventListener('click', () => {
+    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
+        myArray[2] = +myArray[2];
+        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
+        myArray[2] = '';
+        myArray[1] = '+';
+    } else if((myArray[0]) && (!myArray[2])) {
+        myArray[1] = '+';
+        myArray[0] = +myArray[0];
+    }
+});
  
-
+minus.addEventListener('click', () => {
+    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
+        console.log('Both numbers exist');
+        myArray[2] = +myArray[2];
+        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
+        myArray[2] = '';
+        myArray[1] = '-';
+    } else if((myArray[0]) && (!myArray[2])) {
+        myArray[1] = '-';
+        myArray[0] = +myArray[0];
+    }
+});
    
+multi.addEventListener('click', () => {
+    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
+        console.log('Both numbers exist');
+        myArray[2] = +myArray[2];
+        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
+        myArray[2] = '';
+        myArray[1] = '*';
+    } else if((myArray[0]) && (!myArray[2])) {
+        myArray[1] = '*';
+        myArray[0] = +myArray[0];
+    }
+ });
 
+ div.addEventListener('click', () => {
+    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
+        console.log('Both numbers exist');
+        myArray[2] = +myArray[2];
+        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
+        myArray[2] = '';
+        myArray[1] = '/';
+    } else if((myArray[0]) && (!myArray[2])) {
+        myArray[1] = '/';
+        myArray[0] = +myArray[0];
+    }
+});
    
 
 
