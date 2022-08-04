@@ -31,6 +31,19 @@ function divide() {
     return initial;
 }
 
+function operate() {
+    if(arguments[1] == '+') {
+        return add(arguments[0], arguments[2]);
+    } else if (arguments[1] == '-') {
+        return subtract(arguments[0], arguments[2]);
+    } else if(arguments[1] == '*') {
+        return multiply(arguments[0], arguments[2]);
+    } else if(arguments[1] == '/') {
+        return divide(arguments[0], arguments[2]);
+    }
+}
+
+
 
  
 
