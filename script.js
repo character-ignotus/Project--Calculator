@@ -43,6 +43,17 @@ function operate() {
     }
 }
 
+const one = document.querySelector('#one');
+const two = document.querySelector('#two');
+const plus = document.querySelector('#plus');
+const minus = document.querySelector('#minus');
+const multi = document.querySelector('#multiply');
+const div = document.querySelector('#divide');
+
+// Array for storing the current & next number & the operator
+const myArray = ['', '', ''];
+
+
 
 
  
