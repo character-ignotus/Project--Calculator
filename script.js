@@ -80,4 +80,14 @@ operators.forEach(operator => {
     });
 });
 
-
+equals.addEventListener('click', () => {
+    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
+        console.log('Both numbers exist, this is equals');
+        myArray[2] = +myArray[2];
+        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
+        myArray[2] = '';
+        myArray[1] = '';
+    } else if((myArray[0]) && (!myArray[2])) {
+        console.log(myArray[0]);
+    }
+});
