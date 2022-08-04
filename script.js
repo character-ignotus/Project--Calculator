@@ -54,6 +54,21 @@ const div = document.querySelector('#divide');
 const myArray = ['', '', ''];
 
 
+one.addEventListener('click', () => {
+    if(typeof(myArray[0]) != 'number') {
+        myArray[0] += '1';
+    } else {
+        myArray[2] += '1';
+    }
+});
+
+two.addEventListener('click', () => {
+    if(typeof(myArray[0]) != 'number') {
+        myArray[0] += '2';
+    } else {
+        myArray[2] += '2';
+    }
+});
 
 
  
