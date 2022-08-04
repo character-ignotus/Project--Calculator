@@ -43,86 +43,41 @@ function operate() {
     }
 }
 
-const one = document.querySelector('#one');
-const two = document.querySelector('#two');
-const plus = document.querySelector('#plus');
-const minus = document.querySelector('#minus');
-const multi = document.querySelector('#multiply');
-const div = document.querySelector('#divide');
+const digits = Array.from(document.querySelectorAll('#digits div'));
+const operators = Array.from(document.querySelectorAll('#operators div'));
+const equals = document.querySelector('#equals');
 
 // Array for storing the current & next number & the operator
 const myArray = ['', '', ''];
-
-
-one.addEventListener('click', () => {
-    if(typeof(myArray[0]) != 'number') {
-        myArray[0] += '1';
-    } else {
-        myArray[2] += '1';
-    }
-});
-
-two.addEventListener('click', () => {
-    if(typeof(myArray[0]) != 'number') {
-        myArray[0] += '2';
-    } else {
-        myArray[2] += '2';
-    }
-});
-
-
-plus.addEventListener('click', () => {
-    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-        myArray[2] = +myArray[2];
-        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
-        myArray[2] = '';
-        myArray[1] = '+';
-    } else if((myArray[0]) && (!myArray[2])) {
-        myArray[1] = '+';
-        myArray[0] = +myArray[0];
-    }
-});
- 
-minus.addEventListener('click', () => {
-    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-        console.log('Both numbers exist');
-        myArray[2] = +myArray[2];
-        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
-        myArray[2] = '';
-        myArray[1] = '-';
-    } else if((myArray[0]) && (!myArray[2])) {
-        myArray[1] = '-';
-        myArray[0] = +myArray[0];
-    }
-});
-   
-multi.addEventListener('click', () => {
-    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-        console.log('Both numbers exist');
-        myArray[2] = +myArray[2];
-        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
-        myArray[2] = '';
-        myArray[1] = '*';
-    } else if((myArray[0]) && (!myArray[2])) {
-        myArray[1] = '*';
-        myArray[0] = +myArray[0];
-    }
- });
-
- div.addEventListener('click', () => {
-    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-        console.log('Both numbers exist');
-        myArray[2] = +myArray[2];
-        myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
-        myArray[2] = '';
-        myArray[1] = '/';
-    } else if((myArray[0]) && (!myArray[2])) {
-        myArray[1] = '/';
-        myArray[0] = +myArray[0];
-    }
-});
    
 
+digits.forEach((digit) => {
+    digit.addEventListener('click', (e) => {
+        if(typeof(myArray[0]) != 'number') {
+            myArray[0] += `${e.target.getAttribute('id')}`;
+            console.log(myArray[0]);
+        } else {
+            myArray[2] += `${e.target.getAttribute('id')}`;
+            console.log(myArray[2]);
+        }
+    });
+});
+
+operators.forEach(operator => {
+    operator.addEventListener('click', (e) => {
+        if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
+            console.log('Both numbers exist');
+            myArray[2] = +myArray[2];
+            myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
+            myArray[2] = '';
+            myArray[1] = `${e.target.getAttribute('id')}`;
+            console.log(e.target.getAttribute('id'));
+        } else if((myArray[0]) && (!myArray[2])) {
+            myArray[1] = `${e.target.getAttribute('id')}`;
+            myArray[0] = +myArray[0];
+            console.log(e.target.getAttribute('id'));
+        }
+    });
+});
 
 
-   
