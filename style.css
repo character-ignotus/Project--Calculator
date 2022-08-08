@@ -17,12 +17,16 @@ body {
 }
 
 .display {
+    display: flex;
+    align-items: center;
+    justify-content: end;
     align-self: center;
     border-style: solid;
     height: 90px;
     width: 330px;
     margin: 20px 5px 15px 5px;
     border-radius: 10px;
+    font-size: 70px;
 }
 
 .section {
@@ -35,7 +39,7 @@ body {
     gap: 25px;
 }
 
-.btn {
+.section div {
     display: flex;
     align-items: center;
     justify-content: center;
