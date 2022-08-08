@@ -9,25 +9,37 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div>
-        <div id="digits">
-            <div id="0" style="font-size: 24px; border-style: solid; margin-bottom: 20px">0</div>
-            <div id="1" style="font-size: 24px; border-style: solid; margin-bottom: 20px">1</div>
-            <div id="2" style="font-size: 24px; border-style: solid; margin-bottom: 20px">2</div>
-            <div id="3" style="font-size: 24px; border-style: solid; margin-bottom: 20px">3</div>
-            <div id="4" style="font-size: 24px; border-style: solid; margin-bottom: 20px">4</div>
-            <div id="5" style="font-size: 24px; border-style: solid; margin-bottom: 20px">5</div>
-            <div id="6" style="font-size: 24px; border-style: solid; margin-bottom: 20px">6</div>
-            <div id="7" style="font-size: 24px; border-style: solid; margin-bottom: 20px">7</div>
-            <div id="8" style="font-size: 24px; border-style: solid; margin-bottom: 20px">8</div>
-            <div id="9" style="font-size: 24px; border-style: solid; margin-bottom: 20px">9</div>
+    <div id="calc-body">
+        <div class="first display"></div>
+        <div class="section second">
+            <div class="btn">AC</div>
+            <div id="/" class="btn operator">/</div>
+            <div id="*" class="btn operator">X</div>
+            <div class="btn">Bs</div>
         </div>
-        <div id="equals" style="font-size: 24px; border-style: solid; margin-bottom: 20px; height: 20px;">=</div>
-        <div id="operators">
-            <div id="+" style="font-size: 24px; border-style: solid; margin-bottom: 20px">+</div>
-            <div id="-" style="font-size: 24px; border-style: solid; margin-bottom: 20px">-</div>
-            <div id="*" style="font-size: 24px; border-style: solid; margin-bottom: 20px">*</div>
-            <div id="/" style="font-size: 24px; border-style: solid; margin-bottom: 20px">/</div>
+        <div class="section third">
+            <div id="1" class="btn digit">1</div>
+            <div id="2" class="btn digit">2</div>
+            <div id="3" class="btn digit">3</div>
+            <div id="+" class="btn operator">+</div>
+        </div>
+        <div class="section third">
+            <div id="4" class="btn digit">4</div>
+            <div id="5" class="btn digit">5</div>
+            <div id="6" class="btn digit">6</div>
+            <div id="-" class="btn operator">-</div>
+        </div>
+        <div class="section fourth">
+            <div id="7" class="btn digit">7</div>
+            <div id="8" class="btn digit">8</div>
+            <div id="9" class="btn digit">9</div>
+            <div class="btn">+/-</div>
+        </div>
+        <div class="section fifth">
+            <div class="btn">%</div>
+            <div id="0" class="btn digit">0</div>
+            <div class="btn">.</div>
+            <div id="equals" class="btn">=</div>
         </div>
     </div>
 </body>
