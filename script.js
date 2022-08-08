@@ -49,6 +49,7 @@ const equals = document.querySelector('#equals');
 const display = document.querySelector('.display');
 const clearBtn = document.querySelector('.clearBtn');
 const backspaceBtn = document.querySelector('.backSpace');
+const decimalBtn = document.querySelector('.decimalBtn');
 
 display.textContent = '0';
 
@@ -149,5 +150,21 @@ backspaceBtn.addEventListener('click', () => {
     } else {
         myArray[2] = myArray[2].slice(0,-1);
         display.textContent = `${myArray[2]}`;
+    }
+});
+
+decimalBtn.addEventListener('click', () => {
+    if(typeof(myArray[0]) != 'number' || !myArray[1]) {
+        let string1 = myArray[0].toString();
+        if(!string1.includes('.')) {
+            myArray[0] += '.';
+            display.textContent = myArray[0];
+        } 
+    } else if((myArray[0] || myArray[0] == '0') && myArray[1]) {
+        if(!myArray[2].includes('.')) {
+            console.log('does not');
+            myArray[2] += '.';
+            display.textContent = myArray[2];
+        }
     }
 });
