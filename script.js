@@ -43,8 +43,8 @@ function operate() {
     }
 }
 
-const digits = Array.from(document.querySelectorAll('#digits div'));
-const operators = Array.from(document.querySelectorAll('#operators div'));
+const digits = Array.from(document.getElementsByClassName('digit'));
+const operators = Array.from(document.getElementsByClassName('operator'));
 const equals = document.querySelector('#equals');
 
 // Array for storing the current & next number & the operator
@@ -65,14 +65,19 @@ digits.forEach((digit) => {
 
 operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
-        if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
+        if(myArray[1] == '/' && (myArray[2])) {
+            console.log('Error');
+            myArray[0] = '';
+            myArray[1] = '';
+            myArray[2] = '';
+        } if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
             console.log('Both numbers exist');
             myArray[2] = +myArray[2];
             myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
             myArray[2] = '';
             myArray[1] = `${e.target.getAttribute('id')}`;
             console.log(e.target.getAttribute('id'));
-        } else if((myArray[0]) && (!myArray[2])) {
+        } else if((myArray[0] || myArray[0] == '0') && (!myArray[2])) {
             myArray[1] = `${e.target.getAttribute('id')}`;
             myArray[0] = +myArray[0];
             console.log(e.target.getAttribute('id'));
@@ -81,13 +86,20 @@ operators.forEach(operator => {
 });
 
 equals.addEventListener('click', () => {
-    if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
+    if(myArray[1] == '/' && (myArray[2])) {
+        console.log('Error');
+        myArray[0] = '';
+        myArray[1] = '';
+        myArray[2] = '';
+    } if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
         console.log('Both numbers exist, this is equals');
         myArray[2] = +myArray[2];
         myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
         myArray[2] = '';
         myArray[1] = '';
+        console.log(myArray);
     } else if((myArray[0]) && (!myArray[2])) {
         console.log(myArray[0]);
+        console.log(myArray);
     }
 });
