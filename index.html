@@ -7,39 +7,40 @@
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="keyboard.js" defer></script> 
 </head>
 <body>
     <div id="calc-body">
-        <div class="first display"></div>
+        <div id="display"></div>
         <div class="section second">
-            <div class="clearBtn">AC</div>
-            <div id="/" class="operator">/</div>
-            <div id="*" class="operator">X</div>
-            <div class="backSpace">Bs</div>
+            <div id="clearBtn" data-allClear="c">AC</div>
+            <div id="/" class="operator" data-operator="/">/</div>
+            <div id="*" class="operator" data-operator="*">*</div>
+            <div id="backSpace" data-clear="Backspace">Bs</div>
         </div>
         <div class="section third">
-            <div id="1" class="digit">1</div>
-            <div id="2" class="digit">2</div>
-            <div id="3" class="digit">3</div>
-            <div id="+" class="operator">+</div>
+            <div id="1" class="digit" data-key="1">1</div>
+            <div id="2" class="digit" data-key="2">2</div>
+            <div id="3" class="digit" data-key="3">3</div>
+            <div id="+" class="operator" data-operator="+">+</div>
         </div>
         <div class="section third">
-            <div id="4" class="digit">4</div>
-            <div id="5" class="digit">5</div>
-            <div id="6" class="digit">6</div>
-            <div id="-" class="operator">-</div>
+            <div id="4" class="digit" data-key="4">4</div>
+            <div id="5" class="digit" data-key="5">5</div>
+            <div id="6" class="digit" data-key="6">6</div>
+            <div id="-" class="operator" data-operator="-">-</div>
         </div>
         <div class="section fourth">
-            <div id="7" class="digit">7</div>
-            <div id="8" class="digit">8</div>
-            <div id="9" class="digit">9</div>
-            <div class="symbol">+/-</div>
+            <div id="7" class="digit" data-key="7">7</div>
+            <div id="8" class="digit" data-key="8">8</div>
+            <div id="9" class="digit" data-key="9">9</div>
+            <div id="symbol" data-symbol="s">+/-</div>
         </div>
         <div class="section fifth">
-            <div class="percentage">%</div>
-            <div id="0" class="digit">0</div>
-            <div class="decimalBtn">.</div>
-            <div id="equals" class="btn">=</div>
+            <div id="percentage" data-percentage="%">%</div>
+            <div id="0" class="digit" data-key="0">0</div>
+            <div id="decimalBtn" data-decimal=".">.</div>
+            <div id="equals" data-equals="=" data-enter="Enter">=</div>
         </div>
     </div>
 </body>
