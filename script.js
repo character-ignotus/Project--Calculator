@@ -66,6 +66,8 @@ const display = document.querySelector('.display');
 const clearBtn = document.querySelector('.clearBtn');
 const backspaceBtn = document.querySelector('.backSpace');
 const decimalBtn = document.querySelector('.decimalBtn');
+const percentageBtn = document.querySelector('.percentage');
+const symbolBtn = document.querySelector('.symbol');
 
 display.textContent = '0';
 
@@ -193,3 +195,24 @@ decimalBtn.addEventListener('click', () => {
         }
     }
 });
+
+percentageBtn.addEventListener('click', () => {
+    if(myArray[0] && !myArray[2]) {
+        myArray[0] = myArray[0] / 100;
+        if(myArray[0].toString().length > 8) {
+            myArray[0] = myArray[0].toExponential(4);
+        } else {
+            Math.round(myArray[0]*10000000) / 10000000;
+        }
+        display.textContent = myArray[0];
+    } else {
+        myArray[2] = myArray[2] / 100;
+        if(myArray[2].toString().length > 8) {
+            myArray[2] = myArray[0].toExponential(4);
+        } else {
+            Math.round(myArray[2]*10000000) / 10000000;
+        }
+        display.textContent = myArray[2];
+    }
+});
+
