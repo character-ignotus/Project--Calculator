@@ -89,7 +89,7 @@ digits.forEach((digit) => {
             console.log(myArray[0]);
             display.textContent = `${myArray[0]}`;
         } else {
-            if(myArray[2] == '0') {
+            if(myArray[2] == '0' || myArray[2] == '-0') {
                 myArray[2] = '';
             }
             if(myArray[2].toString().length > 8) {                        
@@ -200,7 +200,7 @@ percentageBtn.addEventListener('click', () => {
     if(myArray[0] && !myArray[2]) {
         myArray[0] = myArray[0] / 100;
         if(myArray[0].toString().length > 8) {
-            myArray[0] = myArray[0].toExponential(4);
+            myArray[0] = myArray[0].toExponential(3);
         } else {
             Math.round(myArray[0]*10000000) / 10000000;
         }
@@ -208,7 +208,7 @@ percentageBtn.addEventListener('click', () => {
     } else {
         myArray[2] = myArray[2] / 100;
         if(myArray[2].toString().length > 8) {
-            myArray[2] = myArray[0].toExponential(4);
+            myArray[2] = myArray[0].toExponential(3);
         } else {
             Math.round(myArray[2]*10000000) / 10000000;
         }
@@ -216,3 +216,20 @@ percentageBtn.addEventListener('click', () => {
     }
 });
 
+symbolBtn.addEventListener('click', () => {
+    if(myArray[0] && !myArray[1] && !myArray[2] ) {
+        if(!(myArray[0].toString().includes('-'))) {
+            myArray[0] =  '-' + myArray[0].toString();
+        } else {
+            myArray[0] = myArray[0].toString().replace("-", "");
+        }
+        display.textContent = myArray[0];
+    } else if(myArray[0] && myArray[1] && myArray[2]) {
+        if(!(myArray[2].includes('-'))) {
+            myArray[2] =  '-' + myArray[2];
+        } else {
+            myArray[2] = myArray[2].replace("-", "");
+        }
+        display.textContent = myArray[2];
+    }
+});
