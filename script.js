@@ -4,7 +4,11 @@ function add() {
     for(i=0; i<arguments.length; i++) {
         initial += arguments[i];
     }
-    return initial;
+    if(initial.toString().length > 8) {
+        return initial.toExponential(4);
+    } else {
+        return Math.round(initial*10000000) / 10000000;
+    }
 } 
 
 function subtract() {
@@ -12,7 +16,11 @@ function subtract() {
     for(i=1; i<arguments.length; i++) {
         initial -= arguments[i];
     }
-    return initial;
+    if(initial.toString().length > 8) {
+        return initial.toExponential(4);
+    } else {
+        return Math.round(initial*10000000) / 10000000;
+    }
 } 
 
 function multiply() {
@@ -20,7 +28,11 @@ function multiply() {
     for(i=0; i<arguments.length; i++) {
         initial *= arguments[i];
     }
-    return initial;
+    if(initial.toString().length > 8) {
+        return initial.toExponential(4);
+    } else {
+        return Math.round(initial*10000000) / 10000000;
+    }
 }
 
 function divide() {
@@ -28,7 +40,11 @@ function divide() {
     for(i=1; i<arguments.length; i++) {
         initial /= arguments[i];
     }
-    return initial;
+    if(initial.toString().length > 8) {
+        return initial.toExponential(4);
+    } else {
+        return Math.round(initial*10000000) / 10000000;
+    }
 }
 
 function operate() {
@@ -61,8 +77,11 @@ digits.forEach((digit) => {
         if((`${e.target.getAttribute('id')}` == '0') && (myArray[0] == '0') && (!myArray[2])) {
             return;
         } else if(typeof(myArray[0]) != 'number' || !myArray[1]) {
-            if(myArray[0] == '0' || (typeof(myArray[0]) == 'number' && !myArray[1])) {
+            if(myArray[0] == '0' || (typeof(myArray[0]) == 'number') || (myArray[0].includes('e'))) { 
                 myArray[0] = '';
+            }
+            if(myArray[0].toString().length > 8) {                         
+                return;
             }
             myArray[0] += `${e.target.getAttribute('id')}`;
             console.log(myArray[0]);
@@ -70,6 +89,9 @@ digits.forEach((digit) => {
         } else {
             if(myArray[2] == '0') {
                 myArray[2] = '';
+            }
+            if(myArray[2].toString().length > 8) {                        
+                return;
             }
             myArray[2] += `${e.target.getAttribute('id')}`;
             console.log(myArray[2]);
@@ -81,9 +103,9 @@ digits.forEach((digit) => {
 operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
         if(myArray[1] == '/' && (myArray[2] == '0')) {
-            myArray[0] = '';
-            myArray[1] = '';
-            myArray[2] = '';
+            for(i=0; i<myArray.length; i++) {
+                myArray[i] = '';
+            }
             display.textContent = `Error`;
         } else if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
             console.log('Both numbers exist');
@@ -103,10 +125,9 @@ operators.forEach(operator => {
 
 equals.addEventListener('click', () => {
     if(myArray[1] == '/' && (myArray[2] == '0')) {
-        // myArray.map(item => item = '';);
-        myArray[0] = '';
-        myArray[1] = '';
-        myArray[2] = '';
+        for(i=0; i<myArray.length; i++) {
+            myArray[i] = '';
+        }
         display.textContent = `Error`;
     } if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
         console.log('Both numbers exist, this is equals');
@@ -132,6 +153,11 @@ clearBtn.addEventListener('click', () => {
 });
 
 backspaceBtn.addEventListener('click', () => {
+
+    if((typeof(myArray[0]) == 'number' && myArray[1] && !myArray[2]) || myArray[0].toString().includes('e')) {
+        return;
+    }
+
     if(typeof(myArray[0]) != 'number') {
         myArray[0] = myArray[0].slice(0,-1);
         display.textContent = `${myArray[0]}`;
@@ -142,10 +168,9 @@ backspaceBtn.addEventListener('click', () => {
     } else if((typeof(myArray[0]) == 'number') && (!myArray[2])) {
         myArray[0] = myArray[0].toString().slice(0,-1);
         display.textContent = `${myArray[0]}`;
-        myArray[0] = +myArray[0];
             if(!myArray[0]) {
                 display.textContent = `0`;
-                myArray[0] = '';
+                myArray[0] = '0';
             }
     } else {
         myArray[2] = myArray[2].slice(0,-1);
