@@ -12,7 +12,8 @@ window.addEventListener('keydown', (e) => {
             }
             myArray[0] += digit.textContent;
             console.log(myArray[0]);
-            display.textContent = `${myArray[0]}`;
+            lowerDisplay.textContent = `${myArray[0]}`;
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } else {
             if(myArray[2] == '0' || myArray[2] == '-0') {
                 myArray[2] = '';
@@ -22,7 +23,8 @@ window.addEventListener('keydown', (e) => {
             }
             myArray[2] += digit.textContent;
             console.log(myArray[2]);
-            display.textContent = `${myArray[2]}`;
+            lowerDisplay.textContent = `${myArray[0]}`;
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         }
 });
 
@@ -33,7 +35,8 @@ window.addEventListener('keydown', (e) => {
         for(i=0; i<myArray.length; i++) {
             myArray[i] = '';
         }
-        display.textContent = `Error`;
+        lowerDisplay.textContent = `Error`;
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     } else if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
         console.log('Both numbers exist');
         myArray[2] = +myArray[2];
@@ -41,11 +44,12 @@ window.addEventListener('keydown', (e) => {
         myArray[2] = '';
         myArray[1] = operator.textContent;
         console.log(operator.textContent);
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     } else if((myArray[0] || myArray[0] == '0') && (!myArray[2])) {
         myArray[1] = operator.textContent;
         myArray[0] = +myArray[0];
-        console.log(operator.textContent);
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     }
 });
 
@@ -79,7 +83,7 @@ window.addEventListener('keydown', (e) => {
         for(i=0; i<myArray.length; i++) {
             myArray[i] = '';
         }
-        display.textContent = `Error`;
+        lowerDisplay.textContent = `Error`;
     } if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
         console.log('Both numbers exist, this is equals');
         myArray[2] = +myArray[2];
@@ -87,9 +91,9 @@ window.addEventListener('keydown', (e) => {
         myArray[2] = '';
         myArray[1] = '';
         console.log(myArray);
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
     } else if((myArray[0]) && (!myArray[2])) {
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
         console.log(myArray[0]);
         console.log(myArray);
     }
@@ -101,7 +105,8 @@ window.addEventListener('keydown', (e) => {
     myArray[0] = '0';
     myArray[1] = '';
     myArray[2] = '';
-    display.textContent = myArray[0];
+    lowerDisplay.textContent = myArray[0];
+    upperDisplay.textContent = '';
     console.log(myArray);
 });
 
@@ -115,21 +120,26 @@ window.addEventListener('keydown', (e) => {
 
     if(typeof(myArray[0]) != 'number') {
         myArray[0] = myArray[0].slice(0,-1);
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
             if(!myArray[0]) {
                 myArray[0] = '0';
-                display.textContent = myArray[0];
+                lowerDisplay.textContent = myArray[0];
+                upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
             }
     } else if((typeof(myArray[0]) == 'number') && (!myArray[2])) {
         myArray[0] = myArray[0].toString().slice(0,-1);
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
             if(!myArray[0]) {
-                display.textContent = `0`;
+                lowerDisplay.textContent = `0`;
+                upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
                 myArray[0] = '0';
             }
     } else {
         myArray[2] = myArray[2].slice(0,-1);
-        display.textContent = `${myArray[2]}`;
+        lowerDisplay.textContent = `${myArray[2]}`;
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     }
 });
 
@@ -140,13 +150,15 @@ window.addEventListener('keydown', (e) => {
         let string1 = myArray[0].toString();
         if(!string1.includes('.')) {
             myArray[0] += '.';
-            display.textContent = myArray[0];
+            lowerDisplay.textContent = myArray[0];
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } 
     } else if((myArray[0] || myArray[0] == '0') && myArray[1]) {
         if(!myArray[2].includes('.')) {
             console.log('does not');
             myArray[2] += '.';
-            display.textContent = myArray[2];
+            lowerDisplay.textContent = myArray[2];
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         }
     }
 });
@@ -161,7 +173,8 @@ window.addEventListener('keydown', (e) => {
         } else {
             Math.round(myArray[0]*10000000) / 10000000;
         }
-        display.textContent = myArray[0];
+        lowerDisplay.textContent = myArray[0];
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     } else {
         myArray[2] = myArray[2] / 100;
         if(myArray[2].toString().length > 8) {
@@ -169,7 +182,8 @@ window.addEventListener('keydown', (e) => {
         } else {
             Math.round(myArray[2]*10000000) / 10000000;
         }
-        display.textContent = myArray[2];
+        lowerDisplay.textContent = myArray[2];
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     }
 });
 
@@ -182,13 +196,15 @@ window.addEventListener('keydown', (e) => {
         } else {
             myArray[0] = myArray[0].toString().replace("-", "");
         }
-        display.textContent = myArray[0];
+        lowerDisplay.textContent = myArray[0];
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     } else if(myArray[0] && myArray[1] && myArray[2]) {
         if(!(myArray[2].includes('-'))) {
             myArray[2] =  '-' + myArray[2];
         } else {
             myArray[2] = myArray[2].replace("-", "");
         }
-        display.textContent = myArray[2];
+        lowerDisplay.textContent = myArray[2];
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     }
 });

@@ -4,7 +4,7 @@ function add() {
     for(i=0; i<arguments.length; i++) {
         initial += arguments[i];
     }
-    if(initial.toString().length > 8) {
+    if(initial.toString().length > 10) {
         return initial.toExponential(4);
     } else {
         return Math.round(initial*10000000) / 10000000;
@@ -16,7 +16,7 @@ function subtract() {
     for(i=1; i<arguments.length; i++) {
         initial -= arguments[i];
     }
-    if(initial.toString().length > 8) {
+    if(initial.toString().length > 10) {
         return initial.toExponential(4);
     } else {
         return Math.round(initial*10000000) / 10000000;
@@ -28,7 +28,7 @@ function multiply() {
     for(i=0; i<arguments.length; i++) {
         initial *= arguments[i];
     }
-    if(initial.toString().length > 8) {
+    if(initial.toString().length > 10) {
         return initial.toExponential(4);
     } else {
         return Math.round(initial*10000000) / 10000000;
@@ -40,7 +40,7 @@ function divide() {
     for(i=1; i<arguments.length; i++) {
         initial /= arguments[i];
     }
-    if(initial.toString().length > 8) {
+    if(initial.toString().length > 10) {
         return initial.toExponential(4);
     } else {
         return Math.round(initial*10000000) / 10000000;
@@ -70,7 +70,10 @@ const percentageBtn = document.querySelector('#percentage');
 const symbolBtn = document.querySelector('#symbol');
 const buttons = Array.from(document.getElementsByClassName('btn'));
 
-display.textContent = '0';
+const upperDisplay = document.querySelector('#upper-display');
+const lowerDisplay = document.querySelector('#lower-display');
+
+lowerDisplay.textContent = '0';
 
 // Array for storing the current & next number & the operator
 const myArray = ['0', '', ''];
@@ -83,22 +86,24 @@ digits.forEach((digit) => {
             if(myArray[0] == '0' || (typeof(myArray[0]) == 'number') || (myArray[0].includes('e')) || myArray[0] == '-0') { 
                 myArray[0] = '';
             }
-            if(myArray[0].toString().length > 7) {                         
+            if(myArray[0].toString().length > 11) {                         
                 return;
             }
             myArray[0] += `${e.target.getAttribute('id')}`;
             console.log(myArray[0]);
-            display.textContent = `${myArray[0]}`;
+            lowerDisplay.textContent = `${myArray[0]}`;
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } else {
             if(myArray[2] == '0' || myArray[2] == '-0') {
                 myArray[2] = '';
             }
-            if(myArray[2].toString().length > 7) {                        
+            if(myArray[2].toString().length > 11) {                        
                 return;
             }
             myArray[2] += `${e.target.getAttribute('id')}`;
             console.log(myArray[2]);
-            display.textContent = `${myArray[2]}`;
+            lowerDisplay.textContent = `${myArray[2]}`;
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         }
     });
 });
@@ -109,7 +114,8 @@ operators.forEach(operator => {
             for(i=0; i<myArray.length; i++) {
                 myArray[i] = '';
             }
-            display.textContent = `Error`;
+            lowerDisplay.textContent = `Error`;
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } else if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
             console.log('Both numbers exist');
             myArray[2] = +myArray[2];
@@ -117,11 +123,13 @@ operators.forEach(operator => {
             myArray[2] = '';
             myArray[1] = `${e.target.getAttribute('id')}`;
             console.log(e.target.getAttribute('id'));
-            display.textContent = `${myArray[0]}`;
+            lowerDisplay.textContent = `${myArray[0]}`;
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } else if((myArray[0] || myArray[0] == '0') && (!myArray[2])) {
             myArray[1] = `${e.target.getAttribute('id')}`;
             myArray[0] = +myArray[0];
             console.log(e.target.getAttribute('id'));
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         }
     });
 });
@@ -131,7 +139,7 @@ equals.addEventListener('click', () => {
         for(i=0; i<myArray.length; i++) {
             myArray[i] = '';
         }
-        display.textContent = `Error`;
+        lowerDisplay.textContent = `Error`;
     } if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
         console.log('Both numbers exist, this is equals');
         myArray[2] = +myArray[2];
@@ -139,9 +147,9 @@ equals.addEventListener('click', () => {
         myArray[2] = '';
         myArray[1] = '';
         console.log(myArray);
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
     } else if((myArray[0]) && (!myArray[2])) {
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
         console.log(myArray[0]);
         console.log(myArray);
     }
@@ -151,7 +159,8 @@ clearBtn.addEventListener('click', () => {
     myArray[0] = '0';
     myArray[1] = '';
     myArray[2] = '';
-    display.textContent = myArray[0];
+    lowerDisplay.textContent = myArray[0];
+    upperDisplay.textContent = '';
     console.log(myArray);
 });
 
@@ -163,21 +172,26 @@ backspaceBtn.addEventListener('click', () => {
 
     if(typeof(myArray[0]) != 'number') {
         myArray[0] = myArray[0].slice(0,-1);
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
             if(!myArray[0]) {
                 myArray[0] = '0';
-                display.textContent = myArray[0];
+                lowerDisplay.textContent = myArray[0];
+                upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
             }
     } else if((typeof(myArray[0]) == 'number') && (!myArray[2])) {
         myArray[0] = myArray[0].toString().slice(0,-1);
-        display.textContent = `${myArray[0]}`;
+        lowerDisplay.textContent = `${myArray[0]}`;
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
             if(!myArray[0]) {
-                display.textContent = `0`;
+                lowerDisplay.textContent = `0`;
+                upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
                 myArray[0] = '0';
             }
     } else {
         myArray[2] = myArray[2].slice(0,-1);
-        display.textContent = `${myArray[2]}`;
+        lowerDisplay.textContent = `${myArray[2]}`;
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     }
 });
 
@@ -186,13 +200,15 @@ decimalBtn.addEventListener('click', () => {
         let string1 = myArray[0].toString();
         if(!string1.includes('.')) {
             myArray[0] += '.';
-            display.textContent = myArray[0];
+            lowerDisplay.textContent = myArray[0];
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } 
     } else if((myArray[0] || myArray[0] == '0') && myArray[1]) {
         if(!myArray[2].includes('.')) {
             console.log('does not');
             myArray[2] += '.';
-            display.textContent = myArray[2];
+            lowerDisplay.textContent = myArray[2];
+            upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         }
     }
 });
@@ -201,19 +217,21 @@ percentageBtn.addEventListener('click', () => {
     if(myArray[0] && !myArray[2]) {
         myArray[0] = myArray[0] / 100;
         if(myArray[0].toString().length > 8) {
-            myArray[0] = myArray[0].toExponential(3);
+            myArray[0] = myArray[0].toExponential(6);
         } else {
             Math.round(myArray[0]*10000000) / 10000000;
         }
-        display.textContent = myArray[0];
+        lowerDisplay.textContent = myArray[0];
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     } else {
         myArray[2] = myArray[2] / 100;
         if(myArray[2].toString().length > 8) {
-            myArray[2] = myArray[0].toExponential(3);
+            myArray[2] = myArray[0].toExponential(6);
         } else {
             Math.round(myArray[2]*10000000) / 10000000;
         }
-        display.textContent = myArray[2];
+        lowerDisplay.textContent = myArray[2];
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     }
 });
 
@@ -224,14 +242,16 @@ symbolBtn.addEventListener('click', () => {
         } else {
             myArray[0] = myArray[0].toString().replace("-", "");
         }
-        display.textContent = myArray[0];
+        lowerDisplay.textContent = myArray[0];
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     } else if(myArray[0] && myArray[1] && myArray[2]) {
         if(!(myArray[2].includes('-'))) {
             myArray[2] =  '-' + myArray[2];
         } else {
             myArray[2] = myArray[2].replace("-", "");
         }
-        display.textContent = myArray[2];
+        lowerDisplay.textContent = myArray[2];
+        upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     }
 });
 
@@ -248,4 +268,3 @@ buttons.forEach(digit => {
         digit.classList.add('btn');
     });
 });
-
