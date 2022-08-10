@@ -3,52 +3,110 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0px;
+    margin: 0px;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    animation: animate 10s ease-in-out infinite;
+    font-family: 'Roboto', 'Times New Roman', Times, serif;
+    font-weight: 900;
 }
 
 #calc-body{
-    border-style: solid;
-    width: 375px;
-    height: 575px;
+    background-color: #ececec;
+    border: 1px solid #ececec;
+    width: 400px;
+    height: 625px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-shrink: 0;
-    border-radius: 14px;
+    border-radius: 35px;
+    box-shadow: 
+    10px 10px 15px rgba(13, 12, 12, 0.75);
+    outline: none;
 }
 
-.display {
+#display {
     display: flex;
     align-items: center;
     justify-content: end;
     align-self: center;
-    border-style: solid;
+    border: 8px solid #ececec;
     height: 90px;
-    width: 330px;
-    margin: 20px 5px 15px 5px;
-    border-radius: 10px;
+    width: 355px;
+    margin: 13px 5px 30px 5px;
+    border-radius: 25px;
     font-size: 70px;
     padding-right: 5px;
+    box-shadow: 
+    -10px -10px 15px rgba(255,255,255,0.5),
+    10px 10px 15px rgba(70,70,70,0.12);
+    outline: none;
+    color: #7a7a7a;
 }
 
 .section {
-    /* border-style: solid; */
     height: 75px;
     margin: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 25px;
+    gap: 22px;
 }
 
-.section div {
+.btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-style: solid;
+    border: 8px solid #ececec;
     width: 60px;
     height: 60px;
     font-size: 24px;
     border-radius: 50%;
+    box-shadow: 
+    -10px -10px 15px rgba(255,255,255,0.5),
+    10px 10px 15px rgba(70,70,70,0.12);
+    outline: none;
+    color: #7a7a7a;
+    transition: 1.3s;
 }
 
+.fifth {
+    margin-bottom: 18px;
+}
 
+@keyframes animate{
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
+}
+
+.btnAfter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 8px solid #ececec;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border-radius: 50%;
+    box-shadow: 
+    -10px -10px 15px rgba(255,255,255,0.5),
+    10px 10px 15px rgba(70,70,70,0.12),
+    inset -10px -10px 15px rgba(255,255,255,0.5),
+    inset 10px 10px 15px rgba(70,70,70,0.12);
+    outline: none;
+    color: #15e38a;
+}
+
+#equals {
+    font-size: 56px;
+    color: #ee9d52;
+}

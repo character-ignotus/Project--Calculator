@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <script src="keyboard.js" defer></script> 
 </head>
@@ -13,34 +14,34 @@
     <div id="calc-body">
         <div id="display"></div>
         <div class="section second">
-            <div id="clearBtn" data-allClear="c">AC</div>
-            <div id="/" class="operator" data-operator="/">/</div>
-            <div id="*" class="operator" data-operator="*">*</div>
-            <div id="backSpace" data-clear="Backspace">Bs</div>
+            <div id="clearBtn" class="btn" data-allClear="c">AC</div>
+            <div id="/" class="operator btn" data-operator="/">/</div>
+            <div id="*" class="operator btn" data-operator="*">*</div>
+            <div id="backSpace" class="btn" data-clear="Backspace">Bs</div>
         </div>
         <div class="section third">
-            <div id="1" class="digit" data-key="1">1</div>
-            <div id="2" class="digit" data-key="2">2</div>
-            <div id="3" class="digit" data-key="3">3</div>
-            <div id="+" class="operator" data-operator="+">+</div>
+            <div id="1" class="digit btn" data-key="1">1</div>
+            <div id="2" class="digit btn" data-key="2">2</div>
+            <div id="3" class="digit btn" data-key="3">3</div>
+            <div id="+" class="operator btn" data-operator="+">+</div>
         </div>
         <div class="section third">
-            <div id="4" class="digit" data-key="4">4</div>
-            <div id="5" class="digit" data-key="5">5</div>
-            <div id="6" class="digit" data-key="6">6</div>
-            <div id="-" class="operator" data-operator="-">-</div>
+            <div id="4" class="digit btn" data-key="4">4</div>
+            <div id="5" class="digit btn" data-key="5">5</div>
+            <div id="6" class="digit btn" data-key="6">6</div>
+            <div id="-" class="operator btn" data-operator="-">-</div>
         </div>
         <div class="section fourth">
-            <div id="7" class="digit" data-key="7">7</div>
-            <div id="8" class="digit" data-key="8">8</div>
-            <div id="9" class="digit" data-key="9">9</div>
-            <div id="symbol" data-symbol="s">+/-</div>
+            <div id="7" class="digit btn" data-key="7">7</div>
+            <div id="8" class="digit btn" data-key="8">8</div>
+            <div id="9" class="digit btn" data-key="9">9</div>
+            <div id="symbol" class="btn" data-symbol="s">+/-</div>
         </div>
         <div class="section fifth">
-            <div id="percentage" data-percentage="%">%</div>
-            <div id="0" class="digit" data-key="0">0</div>
-            <div id="decimalBtn" data-decimal=".">.</div>
-            <div id="equals" data-equals="=" data-enter="Enter">=</div>
+            <div id="percentage" class="btn" data-percentage="%">%</div>
+            <div id="0" class="digit btn" data-key="0">0</div>
+            <div id="decimalBtn" class="btn" data-decimal=".">.</div>
+            <div id="equals" class="btn" data-equals="=" data-enter="Enter">=</div>
         </div>
     </div>
 </body>

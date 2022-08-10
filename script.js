@@ -62,12 +62,13 @@ function operate() {
 const digits = Array.from(document.getElementsByClassName('digit'));
 const operators = Array.from(document.getElementsByClassName('operator'));
 const equals = document.querySelector('#equals');
-const display = document.querySelector('.display');
-const clearBtn = document.querySelector('.clearBtn');
-const backspaceBtn = document.querySelector('.backSpace');
-const decimalBtn = document.querySelector('.decimalBtn');
-const percentageBtn = document.querySelector('.percentage');
-const symbolBtn = document.querySelector('.symbol');
+const display = document.querySelector('#display');
+const clearBtn = document.querySelector('#clearBtn');
+const backspaceBtn = document.querySelector('#backSpace');
+const decimalBtn = document.querySelector('#decimalBtn');
+const percentageBtn = document.querySelector('#percentage');
+const symbolBtn = document.querySelector('#symbol');
+const buttons = Array.from(document.getElementsByClassName('btn'));
 
 display.textContent = '0';
 
@@ -79,10 +80,10 @@ digits.forEach((digit) => {
         if((`${e.target.getAttribute('id')}` == '0') && (myArray[0] == '0') && (!myArray[2])) {
             return;
         } else if(typeof(myArray[0]) != 'number' || !myArray[1]) {
-            if(myArray[0] == '0' || (typeof(myArray[0]) == 'number') || (myArray[0].includes('e'))) { 
+            if(myArray[0] == '0' || (typeof(myArray[0]) == 'number') || (myArray[0].includes('e')) || myArray[0] == '-0') { 
                 myArray[0] = '';
             }
-            if(myArray[0].toString().length > 8) {                         
+            if(myArray[0].toString().length > 7) {                         
                 return;
             }
             myArray[0] += `${e.target.getAttribute('id')}`;
@@ -92,7 +93,7 @@ digits.forEach((digit) => {
             if(myArray[2] == '0' || myArray[2] == '-0') {
                 myArray[2] = '';
             }
-            if(myArray[2].toString().length > 8) {                        
+            if(myArray[2].toString().length > 7) {                        
                 return;
             }
             myArray[2] += `${e.target.getAttribute('id')}`;
@@ -233,3 +234,18 @@ symbolBtn.addEventListener('click', () => {
         display.textContent = myArray[2];
     }
 });
+
+buttons.forEach(digit => {
+    digit.addEventListener('mousedown', () => {
+        digit.classList.remove('btn');
+        digit.classList.add('btnAfter');
+    });
+});
+
+buttons.forEach(digit => {
+    digit.addEventListener('mouseup', () => {
+        digit.classList.remove('btnAfter');
+        digit.classList.add('btn');
+    });
+});
+

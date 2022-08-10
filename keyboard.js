@@ -4,10 +4,10 @@ window.addEventListener('keydown', (e) => {
         if((digit.textContent == '0') && (myArray[0] == '0') && (!myArray[2])) {
             return;
         } else if(typeof(myArray[0]) != 'number' || !myArray[1]) {
-            if(myArray[0] == '0' || (typeof(myArray[0]) == 'number') || (myArray[0].includes('e'))) { 
+            if(myArray[0] == '0' || (typeof(myArray[0]) == 'number') || (myArray[0].includes('e')) || myArray[0] == '-0') { 
                 myArray[0] = '';
             }
-            if(myArray[0].toString().length > 8) {                         
+            if(myArray[0].toString().length > 7) {                         
                 return;
             }
             myArray[0] += digit.textContent;
@@ -17,7 +17,7 @@ window.addEventListener('keydown', (e) => {
             if(myArray[2] == '0' || myArray[2] == '-0') {
                 myArray[2] = '';
             }
-            if(myArray[2].toString().length > 8) {                        
+            if(myArray[2].toString().length > 7) {                        
                 return;
             }
             myArray[2] += digit.textContent;
