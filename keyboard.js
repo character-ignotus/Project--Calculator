@@ -11,7 +11,6 @@ window.addEventListener('keydown', (e) => {
                 return;
             }
             myArray[0] += digit.textContent;
-            console.log(myArray[0]);
             lowerDisplay.textContent = `${myArray[0]}`;
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } else {
@@ -22,7 +21,6 @@ window.addEventListener('keydown', (e) => {
                 return;
             }
             myArray[2] += digit.textContent;
-            console.log(myArray[2]);
             lowerDisplay.textContent = `${myArray[0]}`;
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         }
@@ -38,12 +36,10 @@ window.addEventListener('keydown', (e) => {
         lowerDisplay.textContent = `Error`;
         upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     } else if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-        console.log('Both numbers exist');
         myArray[2] = +myArray[2];
         myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
         myArray[2] = '';
         myArray[1] = operator.textContent;
-        console.log(operator.textContent);
         lowerDisplay.textContent = `${myArray[0]}`;
         upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
     } else if((myArray[0] || myArray[0] == '0') && (!myArray[2])) {
@@ -62,17 +58,13 @@ window.addEventListener('keydown', (e) => {
         }
         display.textContent = `Error`;
     } if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-        console.log('Both numbers exist, this is equals');
         myArray[2] = +myArray[2];
         myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
         myArray[2] = '';
         myArray[1] = '';
-        console.log(myArray);
         display.textContent = `${myArray[0]}`;
     } else if((myArray[0]) && (!myArray[2])) {
         display.textContent = `${myArray[0]}`;
-        console.log(myArray[0]);
-        console.log(myArray);
     }
 });
 
@@ -85,17 +77,13 @@ window.addEventListener('keydown', (e) => {
         }
         lowerDisplay.textContent = `Error`;
     } if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-        console.log('Both numbers exist, this is equals');
         myArray[2] = +myArray[2];
         myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
         myArray[2] = '';
         myArray[1] = '';
-        console.log(myArray);
         lowerDisplay.textContent = `${myArray[0]}`;
     } else if((myArray[0]) && (!myArray[2])) {
         lowerDisplay.textContent = `${myArray[0]}`;
-        console.log(myArray[0]);
-        console.log(myArray);
     }
 });
 
@@ -107,7 +95,6 @@ window.addEventListener('keydown', (e) => {
     myArray[2] = '';
     lowerDisplay.textContent = myArray[0];
     upperDisplay.textContent = '';
-    console.log(myArray);
 });
 
 window.addEventListener('keydown', (e) => {
@@ -155,7 +142,6 @@ window.addEventListener('keydown', (e) => {
         } 
     } else if((myArray[0] || myArray[0] == '0') && myArray[1]) {
         if(!myArray[2].includes('.')) {
-            console.log('does not');
             myArray[2] += '.';
             lowerDisplay.textContent = myArray[2];
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;

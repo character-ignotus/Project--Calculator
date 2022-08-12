@@ -90,7 +90,6 @@ digits.forEach((digit) => {
                 return;
             }
             myArray[0] += `${e.target.getAttribute('id')}`;
-            console.log(myArray[0]);
             lowerDisplay.textContent = `${myArray[0]}`;
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } else {
@@ -101,7 +100,6 @@ digits.forEach((digit) => {
                 return;
             }
             myArray[2] += `${e.target.getAttribute('id')}`;
-            console.log(myArray[2]);
             lowerDisplay.textContent = `${myArray[2]}`;
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         }
@@ -117,18 +115,15 @@ operators.forEach(operator => {
             lowerDisplay.textContent = `Error`;
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } else if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-            console.log('Both numbers exist');
             myArray[2] = +myArray[2];
             myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
             myArray[2] = '';
             myArray[1] = `${e.target.getAttribute('id')}`;
-            console.log(e.target.getAttribute('id'));
             lowerDisplay.textContent = `${myArray[0]}`;
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         } else if((myArray[0] || myArray[0] == '0') && (!myArray[2])) {
             myArray[1] = `${e.target.getAttribute('id')}`;
             myArray[0] = +myArray[0];
-            console.log(e.target.getAttribute('id'));
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
         }
     });
@@ -141,17 +136,13 @@ equals.addEventListener('click', () => {
         }
         lowerDisplay.textContent = `Error`;
     } if((myArray[0] || myArray[0] == '0') && (myArray[2])) {
-        console.log('Both numbers exist, this is equals');
         myArray[2] = +myArray[2];
         myArray[0] = operate(myArray[0], myArray[1], myArray[2]);
         myArray[2] = '';
         myArray[1] = '';
-        console.log(myArray);
         lowerDisplay.textContent = `${myArray[0]}`;
     } else if((myArray[0]) && (!myArray[2])) {
         lowerDisplay.textContent = `${myArray[0]}`;
-        console.log(myArray[0]);
-        console.log(myArray);
     }
 });
 
@@ -161,7 +152,6 @@ clearBtn.addEventListener('click', () => {
     myArray[2] = '';
     lowerDisplay.textContent = myArray[0];
     upperDisplay.textContent = '';
-    console.log(myArray);
 });
 
 backspaceBtn.addEventListener('click', () => {
@@ -205,7 +195,6 @@ decimalBtn.addEventListener('click', () => {
         } 
     } else if((myArray[0] || myArray[0] == '0') && myArray[1]) {
         if(!myArray[2].includes('.')) {
-            console.log('does not');
             myArray[2] += '.';
             lowerDisplay.textContent = myArray[2];
             upperDisplay.textContent = `${myArray[0]+myArray[1]+myArray[2]}`;
